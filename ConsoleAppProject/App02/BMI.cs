@@ -71,7 +71,6 @@ namespace ConsoleAppProject.App02
             return ExecuteChoice(choiceNo);
         }
 
-
          /// <summary>
         /// Execute other method 
         /// based on user's chosen unit
@@ -93,6 +92,22 @@ namespace ConsoleAppProject.App02
                     return BMIUnit.NoUnit;
             }
         }
+
+         /// <summary>
+        /// Prints the Bame message 
+        /// explaining the extra risk
+        /// </summary>
+        public string OutputBame()
+        {
+            StringBuilder message = new StringBuilder("\n");
+            message.Append("\n\tIf you are Black, Asian or other minority");
+            message.Append("ethnic groups, you have a higher risk!");
+            message.Append("\n\tAdults 23.0 or more are at increased risk;");
+            message.Append("Adults 27.5 or more are at high risk.");
+            return message.ToString();
+        }
+
+
 
 
 
