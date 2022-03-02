@@ -105,7 +105,9 @@ namespace ConsoleAppProject.App02
             message.Append("\n\tAdults 23.0 or more are at increased risk;");
             message.Append("Adults 27.5 or more are at high risk.");
             return message.ToString();
-        }
+          }
+    }
+}
 
 
 
