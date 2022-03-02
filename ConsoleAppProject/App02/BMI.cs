@@ -36,9 +36,8 @@ namespace ConsoleAppProject.App02
         public const double Overweight = 29.9;
         public const double ObeseClassI = 34.9;
         public const double ObeseClassII = 39.9;
-        public const double ObeseClassIII = 40.0
-
-
+        public const double ObeseClassIII = 40.0;
+        
         /// <summary>
         /// Ouput Heading and Display menu choices
         /// User can select their preferred unit between Imperial and Mertic
@@ -55,7 +54,6 @@ namespace ConsoleAppProject.App02
             Console.WriteLine(OutputBame());
         }
 
-
         /// <summary>
         /// Allows user to select their prefered unit 
         /// Imperial or Metric Unit
@@ -71,7 +69,7 @@ namespace ConsoleAppProject.App02
             return ExecuteChoice(choiceNo);
         }
 
-         /// <summary>
+        /// <summary>
         /// Execute other method 
         /// based on user's chosen unit
         /// returns the metric unit
@@ -93,7 +91,7 @@ namespace ConsoleAppProject.App02
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Prints the Bame message 
         /// explaining the extra risk
         /// </summary>
@@ -105,10 +103,90 @@ namespace ConsoleAppProject.App02
             message.Append("\n\tAdults 23.0 or more are at increased risk;");
             message.Append("Adults 27.5 or more are at high risk.");
             return message.ToString();
-          }
+        }
+
+        /// <summary>
+        /// Ouputs the WHO weight status 
+        /// based on user calculated BMI index
+        /// </summary>
+        /// <returns></returns>
+        public string OutputBmiCategory()
+        {
+            StringBuilder message = new StringBuilder("\n");
+
+            if (BmiIndex < Underweight)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Underweight.");
+            }
+            else if (BmiIndex >= Underweight && BmiIndex <= Normal)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Normal");
+            }
+            else if (BmiIndex >= Normal && BmiIndex <= Overweight)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Overweight");
+            }
+            else if (BmiIndex >= Overweight && BmiIndex <= ObeseClassI)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Obese Class I");
+            }
+            else if (BmiIndex >= ObeseClassI && BmiIndex <= ObeseClassII)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Obese Class II");
+            }
+            else if (BmiIndex >= ObeseClassIII)
+            {
+                message.Append($"Your BMI is {BmiIndex:0.00}, " + $"You are classified as Obese Class III");
+            }
+            return message.ToString();
+        }
+
+        /// <summary>
+        /// Inputs the height and weight of user
+        /// using imperial units
+        /// </summary>
+        private void InputImperialValue()
+        {
+            Console.WriteLine("\nEnter your Height:");
+            Feet = (int)ConsoleHelper.InputNumber("--in Feet > ");
+            Inch = (int)ConsoleHelper.InputNumber("--in Inches > ");
+            Console.WriteLine("\nEnter your Weight:");
+            Stone = (int)ConsoleHelper.InputNumber("--in Stones > ");
+            Pound = (int)ConsoleHelper.InputNumber("--in Pounds > ");
+        }
+
+        /// <summary>
+        /// Inputs the height and weight of user
+        /// using metric units
+        /// </summary>
+        private void InputMetricValue()
+        {
+            Kilograms = ConsoleHelper.InputNumber("\nEnter your weight to the nearest Kg > ");
+            Centimetres = (int)ConsoleHelper.InputNumber("\nEnter your height to the nearest centimeters > ");
+        }
+
+        /// <summary>
+        /// Calculates the BMI index of user
+        /// using imperial units
+        /// </summary>
+        public void CalculateImperial()
+        {
+            Pound += Stone * POUNDS_IN_STONES;
+            Inch += Feet * INCH_IN_FEET;
+            BmiIndex = (double)Pound * 703 / (Inch * Inch); 
+        }
+
+        /// <summary>
+        /// Inputs the BMI index of user
+        /// using imperial units
+        /// </summary>
+        public void CalculateMetric()
+        {
+            Metres = (double)Centimetres / 100;
+            BmiIndex = Kilograms / (Metres * Metres);
+        }
     }
 }
-
 
 
 
