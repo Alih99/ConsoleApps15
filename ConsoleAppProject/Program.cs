@@ -1,7 +1,5 @@
-﻿using ConsoleAppProject.App01;
-using ConsoleAppProject.App02;
-using ConsoleAppProject.App03;
-using ConsoleAppProject.App04;
+﻿using ConsoleAppProject.App03;
+using ConsoleAppProject.Helpers;
 using System;
 
 namespace ConsoleAppProject
@@ -12,32 +10,16 @@ namespace ConsoleAppProject
     /// to start Apps 01 to 05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Ali Hassan 15/02/2021
+    /// Derek Peacock 14/12/2020
     /// </summary>
     public static class Program
     {
-
-        public static void Main()
+        public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-
-            ConsoleHelper.OutputHeading("BNU CO453 Applications Programming 2020-2021!");
-
-            string[] choices = { "Distance Converter", "BMI Calculator", "Student Marks", "Social Network" };
-            int choiceNo = ConsoleHelper.SelectChoice(choices);
-
-            switch (choiceNo)
-            {
-                case 1:
-                    DistanceConverter converter = new DistanceConverter();
-                    converter.ConvertDistance();
-                    break;
-                case 2:
-                    BMI bmiindex = new BMI();
-                    bmiindex.ConvertBmi();
-                    break;
-               
-            }
+            
+            Console.WriteLine("BNU CO453 Applications Programming 2021-2022!");
+            Console.WriteLine();
         }
     }
 }
