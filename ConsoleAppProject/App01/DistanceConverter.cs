@@ -8,8 +8,8 @@ namespace ConsoleAppProject.App01
     /// output the equicalent distance in another unit.
     /// </summary>
     /// <author>
-    /// Ali Hassan version 0.1
-    /// modified by 14/02/2022
+    /// Nerizza Flores version 0.1
+    /// modified by 14/02/2021
     /// </author>
     public class DistanceConverter
     {
@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App01
         public const double METRES_IN_MILES = 1609.34;
         public const double FEET_IN_METRES = 3.28084;
 
-         //initialised instance variables
+        //initialised instance variables
         public double FromDistance { get; set; }
         public double ToDistance { get; set; }
         public DistanceUnits FromUnit { get; set; }
@@ -33,8 +33,7 @@ namespace ConsoleAppProject.App01
             ToUnit = DistanceUnits.Feet;
         }
 
-
-         /// <summary>
+        /// <summary>
         /// Call other methods 
         /// Prompts the user to input which unit the distance which will be converted from
         /// and which unit it will be converted to. 
@@ -52,7 +51,6 @@ namespace ConsoleAppProject.App01
             CalculateDistance();
             OutputDistance();
         }
-
 
         /// <summary>
         /// Calculate the distance based on the user choice
@@ -85,7 +83,6 @@ namespace ConsoleAppProject.App01
                 ToDistance = FromDistance * FEET_IN_METRES;
             } 
         }
-
 
         /// <summary>
         /// Prompt the user to select their chosen (choices)unit
@@ -132,6 +129,5 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine($"\n{FromDistance} {FromUnit} is {ToDistance} {ToUnit}.\n");
         }
-
     }
 }
