@@ -25,3 +25,15 @@ namespace ConsoleAppProject.App02
         public double Kilograms { get; set; }
 
         public double Metres;
+
+        //For conversion
+        public const int POUNDS_IN_STONES = 14;
+        public const int INCH_IN_FEET = 12;
+
+        //WHO Weight Status	
+        public const double Underweight = 18.5;
+        public const double Normal = 24.9;
+        public const double Overweight = 29.9;
+        public const double ObeseClassI = 34.9;
+        public const double ObeseClassII = 39.9;
+        public const double ObeseClassIII = 40.0
