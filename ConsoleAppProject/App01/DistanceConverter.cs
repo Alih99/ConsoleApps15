@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App01
     /// output the equicalent distance in another unit.
     /// </summary>
     /// <author>
-    /// Nerizza Flores version 0.1
+    /// Ali Hassan version 0.1
     /// modified by 14/02/2021
     /// </author>
     public class DistanceConverter
