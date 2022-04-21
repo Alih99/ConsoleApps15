@@ -36,7 +36,14 @@ namespace ConsoleAppProject
                     BMI bmiindex = new BMI();
                     bmiindex.ConvertBmi();
                     break;
-             
+                case 3:
+                    StudentGrades studentGrades = new StudentGrades();
+                    studentGrades.StudentMenu();
+                    break;
+                
+
+
+
             }    
         }
     }
