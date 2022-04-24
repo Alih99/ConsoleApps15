@@ -40,7 +40,11 @@ namespace ConsoleAppProject
                     StudentGrades studentGrades = new StudentGrades();
                     studentGrades.StudentMenu();
                     break;
-                
+                case 4:
+                    NetworkApp socialApp = new NetworkApp();
+                    socialApp.DisplayMenu();
+                    break;
+
 
 
 

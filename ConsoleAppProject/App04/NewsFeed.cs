@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace ConsoleAppProject.App04
 {
     ///<summary>
@@ -16,41 +15,40 @@ namespace ConsoleAppProject.App04
     ///</summary>
     ///<author>
     ///  Michael Kölling and David J. Barnes
-    ///  version 0.1
+    ///  modified by: Ali Hassan 22/04/2022
+    ///  version 0.2
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<MessagePost> messages;
-        private readonly List<PhotoPost> photos;
+        private readonly List<Post> posts;
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
         public NewsFeed()
         {
-            messages = new List<MessagePost>();
-            photos = new List<PhotoPost>();
+            posts = new List<Post>();
+            //sample post
+            MessagePost post1 = new MessagePost("Nerizza", "Hi!!");
+            AddMessagePost(post1);
         }
-
 
         ///<summary>
         /// Add a text post to the news feed.
-        /// 
         /// @param text  The text post to be added.
         ///</summary>
         public void AddMessagePost(MessagePost message)
         {
-            messages.Add(message);
+            posts.Add(message);
         }
 
         ///<summary>
         /// Add a photo post to the news feed.
-        /// 
         /// @param photo  The photo post to be added.
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
-            photos.Add(photo);
+            posts.Add(photo);
         }
 
         ///<summary>
@@ -60,19 +58,147 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             // display all text posts
-            foreach (MessagePost message in messages)
+            foreach (Post post in posts)
             {
-                message.Display();
-                Console.WriteLine();   // empty line between posts
+                post.Display();
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Finding the post with the given id
+        /// </summary>
+        /// <returns>returns the matching post
+        /// or null if there is none </returns>
+        public Post FindPost(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.PostId == id)
+                {
+                    return post;
+                }
             }
 
-            // display all photos
-            foreach (PhotoPost photo in photos)
+            return null;
+        }
+
+        /// <summary>
+        /// Remove Post based on the id post
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
             {
-                photo.Display();
-                Console.WriteLine();   // empty line between posts
+                Console.WriteLine($"\nPost with ID: {id} does not exist!\n");
+            }
+            else
+            {
+                Console.WriteLine($"\nThe following Post {id} has been removed!\n");
+
+                if (post is MessagePost mp)
+                {
+                    mp.Display();
+                }
+                else if (post is PhotoPost pp)
+                {
+                    pp.Display();
+                }
+
+                posts.Remove(post);
+                post.Display();
+            }
+        }
+
+        /// <summary>
+        /// Find the post based on the
+        /// given author and output all the post
+        /// </summary>
+        public void DisplayAuthorPost(string author)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.Username == author)
+                {
+                    post.Display();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add comments based on the post id
+        /// then add text on the post
+        /// </summary>
+        public void AddPostComment(int id, string text)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\nPost with ID: {id} does not exist!\n");
+            }
+            else
+            {
+                Console.WriteLine($"\nThe following comment have been added to post {id}!\n");
+                post.AddComment(text);
+                post.Display();
+            }
+        }
+
+        /// <summary>
+        /// Like post based on the given id post
+        /// </summary>
+        public void LikePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\nPost with ID: {id} does not exist!\n");
+            }
+            else
+            {
+                Console.WriteLine($"\nYou have liked the the following post {id}!\n");
+                post.Like();
+                post.Display();
+            }
+        }
+
+        /// <summary>
+        /// Unlike a post based on the given id post
+        /// </summary>
+        public void UnlikePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\nPost with ID: {id} does not exist!\n");
+            }
+            else
+            {
+                Console.WriteLine($"\nYou have unliked the the following post {id}!\n");
+                post.Unlike();
+                post.Display();
+            }
+        }
+
+        /// <summary>
+        /// Ouput the post based on 
+        /// the date of the post
+        /// </summary>
+        public void FindDate(string date)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.Timestamp.ToLongDateString().Contains(date))
+                {
+                    post.Display();
+                }
             }
         }
     }
-
 }
