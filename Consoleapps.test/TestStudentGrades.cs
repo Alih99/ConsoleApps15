@@ -1,106 +1,225 @@
-using ConsoleAppProject.App01;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using ConsoleAppProject.App03;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ConsoleApp.Tests
 {
     [TestClass]
-    public class TestDistanceConverter
+    public class TestStudentGrades
     {
-        [TestMethod]
-        public void TestMilesToFeet()
+        private readonly StudentGrades converter = new StudentGrades();
+        private int[] testMarks;
+
+        public TestStudentGrades()
         {
-            DistanceConverter converter = new DistanceConverter();
-
-            converter.FromUnit = DistanceUnits.Miles;
-            converter.ToUnit = DistanceUnits.Feet;
-
-            converter.FromDistance = 1.0;
-            converter.CalculateDistance();
-
-            double exptectedDistance = 5280;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            testMarks = new int[]
+            {
+                10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+            };
         }
 
         [TestMethod]
-        public void TestFeetToMiles()
+        public void TestConvert0toGradeF()
         {
-            DistanceConverter converter = new DistanceConverter();
+            //Arrange
+            Grades expectedGrade = Grades.F;
 
-            converter.FromUnit = DistanceUnits.Feet;
-            converter.ToUnit = DistanceUnits.Miles;
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(0);
 
-            converter.FromDistance = 5280;
-            converter.CalculateDistance();
+            //Assert
 
-            double exptectedDistance = 1.0;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            Assert.AreEqual(expectedGrade, actualGrade);
         }
 
         [TestMethod]
-        public void TestMetresToFeet()
+        public void TestConvert39toGradeF()
         {
-            DistanceConverter converter = new DistanceConverter();
+            //Arrange
+            Grades expectedGrade = Grades.F;
 
-            converter.FromUnit = DistanceUnits.Metres;
-            converter.ToUnit = DistanceUnits.Feet;
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(39);
 
-            converter.FromDistance = 1.0;
-            converter.CalculateDistance();
+            //Assert
 
-            double exptectedDistance = 3.28084;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            Assert.AreEqual(expectedGrade, actualGrade);
         }
 
         [TestMethod]
-        public void TestFeetToMetres()
+        public void TestConvert40toGradeD()
         {
-            DistanceConverter converter = new DistanceConverter();
+            //Arrange
+            Grades expectedGrade = Grades.D;
 
-            converter.FromUnit = DistanceUnits.Feet;
-            converter.ToUnit = DistanceUnits.Metres;
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(40);
 
-            converter.FromDistance = 3.28084;
-            converter.CalculateDistance();
+            //Assert
 
-            double exptectedDistance = 1.0;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            Assert.AreEqual(expectedGrade, actualGrade);
         }
 
         [TestMethod]
-        public void TestMilesToMetres()
+        public void TestConvert49toGradeD()
         {
-            DistanceConverter converter = new DistanceConverter();
+            //Arrange
+            Grades expectedGrade = Grades.D;
 
-            converter.FromUnit = DistanceUnits.Miles;
-            converter.ToUnit = DistanceUnits.Metres;
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(49);
 
-            converter.FromDistance = 1.0;
-            converter.CalculateDistance();
+            //Assert
 
-            double exptectedDistance = 1609.34;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            Assert.AreEqual(expectedGrade, actualGrade);
         }
 
         [TestMethod]
-        public void TestMetresToMiles()
+        public void TestConvert50toGradeC()
         {
-            DistanceConverter converter = new DistanceConverter();
+            //Arrange
+            Grades expectedGrade = Grades.C;
 
-            converter.FromUnit = DistanceUnits.Metres;
-            converter.ToUnit = DistanceUnits.Miles;
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(50);
 
-            converter.FromDistance = 1609.34;
-            converter.CalculateDistance();
+            //Assert
 
-            double exptectedDistance = 1.0;
-
-            Assert.AreEqual(exptectedDistance, converter.ToDistance);
+            Assert.AreEqual(expectedGrade, actualGrade);
         }
 
+        [TestMethod]
+        public void TestConvert59toGradeC()
+        {
+            //Arrange
+            Grades expectedGrade = Grades.C;
+
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(59);
+
+            //Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
+        public void TestConvert60toGradeB()
+        {
+            //Arrange
+            Grades expectedGrade = Grades.B;
+
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(60);
+
+            //Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
+        public void TestConvert69toGradeB()
+        {
+            //Arrange
+            Grades expectedGrade = Grades.B;
+
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(69);
+
+            //Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
+        public void TestConvert70toGradeA()
+        {
+            //Arrange
+            Grades expectedGrade = Grades.A;
+
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(70);
+
+            //Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
+        public void TestConvert100toGradeA()
+        {
+            //Arrange
+            Grades expectedGrade = Grades.A;
+
+            //Act
+            Grades actualGrade = converter.ConvertToGrade(100);
+
+            //Assert
+
+            Assert.AreEqual(expectedGrade, actualGrade);
+        }
+
+        [TestMethod]
+        public void TestCalculateMean()
+        {
+            //Arrange
+            converter.Marks = testMarks;
+            double expectedMean = 55.0;
+
+            //Act
+            converter.CalculateStats();
+
+            //Assert
+            Assert.AreEqual(expectedMean, converter.Mean);
+        }
+
+        [TestMethod]
+        public void TestCalculateMin()
+        {
+            //Arrange
+            converter.Marks = testMarks;
+            double expectedMin = 10;
+
+            //Act
+            converter.CalculateStats();
+
+            //Assert
+            Assert.AreEqual(expectedMin, converter.Minimum);
+        }
+
+        [TestMethod]
+        public void TestCalculateMax()
+        {
+            //Arrange
+            converter.Marks = testMarks;
+            double expectedMax = 100;
+
+            //Act
+            converter.CalculateStats();
+
+            //Assert
+            Assert.AreEqual(expectedMax, converter.Maximum);
+        }
+
+        [TestMethod]
+        public void TestGradeProfile()
+        {
+            //Arrange
+            converter.Marks = testMarks;
+
+            //Act
+            converter.CalculateGradeProfile();
+
+            bool expectedProfile;
+            expectedProfile = ((converter.GradeProfile[0] == 3) &&
+                               (converter.GradeProfile[1] == 1) &&
+                               (converter.GradeProfile[2] == 1) &&
+                               (converter.GradeProfile[3] == 1) &&
+                               (converter.GradeProfile[4] == 4));
+
+            //Assert
+            Assert.IsTrue(expectedProfile);
+        }
     }
 }
