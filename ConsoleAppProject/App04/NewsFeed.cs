@@ -29,7 +29,7 @@ namespace ConsoleAppProject.App04
         {
             posts = new List<Post>();
             //sample post
-            MessagePost post1 = new MessagePost("Nerizza", "Hi!!");
+            MessagePost post1 = new MessagePost("Ali","Hi!!");
             AddMessagePost(post1);
         }
 
